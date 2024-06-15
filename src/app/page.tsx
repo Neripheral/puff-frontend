@@ -3,8 +3,14 @@ import DragNDrop from "@/app/components/DragNDrop";
 
 export default function Home(){
   return (
-    <main>
-      <DragNDrop />
+    <main className="px-8">
+        <section className="mx-auto p-5 text-white text-center ">
+            <h1 className="font-sans text-5xl font-extrabold py-4">Send your <span className="text-sky-300">droplet</span> up to <i className="text-sky-400">The Puff</i>.</h1>
+            <h2 className="text-2xl"><i>Simple and easy file sharing.</i></h2>
+        </section>
+        <section className="w-1/3 mx-auto">
+            <DragNDrop />
+        </section>
     </main>
   );
 }
