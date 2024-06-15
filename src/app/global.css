@@ -18,8 +18,11 @@
 
 body {
   color: blue;
-  background-image: url("../../public/clouds.gif");
-  background-size: 100% auto;
+  background: url("../../public/clouds.gif") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 @layer utilities {
