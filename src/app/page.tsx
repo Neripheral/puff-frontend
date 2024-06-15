@@ -1,5 +1,5 @@
 import Image from "next/image";
-import DragNDrop from "@/app/components/DragNDrop";
+import DropArea from "@/app/components/DropArea";
 
 export default function Home(){
   return (
@@ -9,7 +9,7 @@ export default function Home(){
             <h2 className="text-2xl"><i>Simple and easy file sharing.</i></h2>
         </section>
         <section className="w-1/3 mx-auto">
-            <DragNDrop />
+            <DropArea />
         </section>
     </main>
   );
