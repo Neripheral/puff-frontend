@@ -10,7 +10,7 @@ export default function DropArea(){
                     alt="Drop your file here."
                     width={200}
                     height={200}
-                    className="opacity-40 m-auto"
+                    className="opacity-40 m-auto invert"
                     />
                 <input type="file" className="hidden"/>
                 <button type={"submit"} className="hidden">Upload</button>
