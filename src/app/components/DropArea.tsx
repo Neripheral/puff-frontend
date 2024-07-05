@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import dropIcon from '/public/drop-icon.png'
 import {useState} from "react";
+import Database from "@/lib/Database";
 
 export default function DropArea(){
     const [file, setFile] = useState<File>();
@@ -30,7 +31,7 @@ export default function DropArea(){
                            const file: File | null = item.getAsFile();
                            if(file){
                                setFile(file);
-                               uploadFile(file);
+                               Database.uploadFile(file);
                            }
                        }
                     });
@@ -49,16 +50,4 @@ export default function DropArea(){
             </form>
         </div>
     );
-}
-
-function uploadFile(file: File){
-    console.log("Sending file");
-    const formData = new FormData();
-    formData.set("file", file);
-    fetch(`http://localhost:8080/puff/api/`, {
-        method: "POST",
-        body: formData
-    }).then(response=>{
-        console.log(JSON.stringify(response));
-    });
 }
