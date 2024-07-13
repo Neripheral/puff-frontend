@@ -1,5 +1,5 @@
 class Database {
-    private rootUrl: string;
+    private readonly rootUrl: string;
 
     constructor(rootUrl: string) {
         this.rootUrl = rootUrl;
@@ -19,8 +19,7 @@ class Database {
 
     async getFileData(id: number){
         const res = await fetch(this.rootUrl + id, {
-            method: "HEAD",
-            cache: "force-cache"
+            method: "HEAD"
         });
 
         const filename = this.getFilenameFromHeader(res.headers.get("Content-Disposition"));
@@ -30,7 +29,8 @@ class Database {
         return filename;
     }
 
-    private getFilenameFromHeader(header: string|null){
+    getFilenameFromHeader(header: string|null){
+        console.log(header);
         if(!header)
             return null;
 
@@ -40,6 +40,19 @@ class Database {
         if(match && match[1])
             return match[1];
         return null;
+    }
+
+    async getFile(id: number): Promise<[Blob, string] | null> {
+        const res = await fetch(this.rootUrl + id);
+
+        if(res.status != 200)
+            return null;
+
+        res.headers.forEach(console.log);
+        const filename = this.getFilenameFromHeader(res.headers.get("Content-Disposition")) || '';
+        console.log("Filename: " + filename);
+        const fileBlob = await res.blob();
+        return [fileBlob, filename];
     }
 }
 
