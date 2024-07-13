@@ -1,4 +1,5 @@
 import Database from "@/lib/Database";
+import DownloadButton from "@/app/components/DownloadButton";
 
 let fileId = 0;
 
@@ -17,7 +18,7 @@ export default async function Page({params}: {params: {fileId: number}}){
                 <h2 className="text-2xl">{filename}</h2>
             </section>
             <section className="w-1/3 mx-auto">
-
+                <DownloadButton id={params.fileId}/>
             </section>
         </main>
     );
