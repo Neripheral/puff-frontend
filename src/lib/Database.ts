@@ -65,4 +65,4 @@ class Database {
     }
 }
 
-export default new Database(`http://localhost:8080/puff/api/`);
+export default new Database(`http://192.168.0.104:8080/puff/api/`);
