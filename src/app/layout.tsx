@@ -1,5 +1,6 @@
 import '@/app/global.css';
 import {Footer} from "@/app/footer";
+import {Header} from "@/app/header";
 
 export const metadata = {
   title: 'Upload File',
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Header/>
         {children}
         <Footer/>
       </body>
