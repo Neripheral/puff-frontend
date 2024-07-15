@@ -2,10 +2,10 @@
 
 import Database from "@/lib/Database";
 
-export default function DownloadButton({id} : {id: number}){
-    const downloadFile = async ()=>{
+export default function DownloadButton({id, filename} : {id: number, filename: string}) {
+    const downloadFile = async () => {
         const response = await Database.getFile(id);
-        if(!response)
+        if (!response)
             return null;
 
         const [blob, filename] = response;
@@ -17,5 +17,5 @@ export default function DownloadButton({id} : {id: number}){
         document.body.removeChild(link);
     }
 
-    return <button className="bg-purple-700 p-4 font-sans text-3xl font-extrabold text-white w-full hover:scale-110 transition" onClick={downloadFile}>Download</button>
+    return <h2 className="break-words text-white text-4xl text-center cursor-pointer w-full max-w-3xl rounded-3xl bg-black/30 p-6 hover:scale-110 transition align-middle underline border-4 border-purple-600/20" onClick={downloadFile}>{filename}</h2>;
 }
