@@ -4,10 +4,12 @@ import Image from 'next/image';
 import dropIcon from '/public/drop-icon.png'
 import {useState} from "react";
 import Database from "@/lib/Database";
+import {redirect, useRouter} from "next/navigation";
 
 export default function DropArea(){
     const [file, setFile] = useState<File>();
     const [fileEnter, setFileEnter] = useState(false);
+    const router = useRouter();
 
     return (
         <div className={(fileEnter ? "bg-black/20 scale-110" : "bg-black/30 scale-100") + " transition border-4 border-gray-400/40 border-dashed aspect-square m-5 p-5 rounded-3xl"}
@@ -31,7 +33,12 @@ export default function DropArea(){
                            const file: File | null = item.getAsFile();
                            if(file){
                                setFile(file);
-                               Database.uploadFile(file);
+                               Database.uploadFile(file).then(id=>{
+                                   if(id) {
+                                       const url = `/${id}`;
+                                       router.push(url);
+                                   }
+                               });
                            }
                        }
                     });

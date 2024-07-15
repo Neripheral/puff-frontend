@@ -5,16 +5,25 @@ class Database {
         this.rootUrl = rootUrl;
     }
 
-    public uploadFile(file: File) {
+    async uploadFile(file: File): Promise<number | null> {
         console.log("Sending file");
         const formData = new FormData();
         formData.set("file", file);
-        fetch(this.rootUrl, {
+
+        const response = await fetch(this.rootUrl, {
             method: "POST",
             body: formData
-        }).then(response => {
-            console.log(JSON.stringify(response));
         });
+
+        if(response.ok){
+            const apiUrl = response.headers.get("Location");
+            const newIdStr = apiUrl?.split("/").pop();
+            if(!newIdStr)
+                return null;
+
+            return parseInt(newIdStr);
+        }
+        return null;
     }
 
     async getFileData(id: number){
