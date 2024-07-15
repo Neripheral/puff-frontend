@@ -17,5 +17,5 @@ export default function DownloadButton({id} : {id: number}){
         document.body.removeChild(link);
     }
 
-    return <button onClick={downloadFile}>Download</button>
+    return <button className="bg-purple-700 p-4 font-sans text-3xl font-extrabold text-white w-full hover:scale-110 transition" onClick={downloadFile}>Download</button>
 }
