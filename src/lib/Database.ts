@@ -1,3 +1,5 @@
+import DatabaseConfig from "@/lib/DatabaseConfig";
+
 class Database {
     private readonly rootUrl: string;
 
@@ -65,4 +67,4 @@ class Database {
     }
 }
 
-export default new Database(`http://192.168.0.104:8080/puff/api/`);
+export default new Database(DatabaseConfig.rootUrl);
